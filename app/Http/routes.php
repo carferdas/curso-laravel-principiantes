@@ -11,6 +11,16 @@
 |
 */
 
+//HTTP: GET, POST, PUT, DELETE
+
+Route::group(['prefix' => 'admin'], function () {
+	
+	Route::get('users', function () {
+		return App\User::all();
+	});
+
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
