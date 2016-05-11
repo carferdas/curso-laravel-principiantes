@@ -18,7 +18,7 @@ class CreateTopicsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('title');
             $table->text('body');
-			$table->boolean('resolved')->default(false);
+            $table->boolean('resolved')->default(false);
             $table->timestamps();
 
             $table->foreign('category_id')->references('id')->on('categories');
