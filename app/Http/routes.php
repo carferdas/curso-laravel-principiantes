@@ -15,9 +15,12 @@
 
 Route::group(['prefix' => 'admin'], function () {
 	
-	Route::get('users', function () {
-		return App\User::all();
-	});
+	Route::get('nombre/{nombre?}', [
+		'as' => 'nombre',
+		'uses' => 'TestController@mostrar'
+	]);
+
+	Route::resource('rest', 'RestController');
 
 });
 
