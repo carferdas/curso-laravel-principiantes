@@ -15,12 +15,11 @@
 
 Route::group(['prefix' => 'admin'], function () {
 	
-	Route::get('nombre/{nombre?}', [
-		'as' => 'nombre',
-		'uses' => 'TestController@mostrar'
-	]);
+	Route::get('/', function () {
+		$categories = App\Category::all();
 
-	Route::resource('rest', 'RestController');
+		return view('admin.index', compact('categories'));
+	});
 
 });
 
