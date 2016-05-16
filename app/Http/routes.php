@@ -11,20 +11,8 @@
 |
 */
 
-//HTTP: GET, POST, PUT, DELETE
-
 Route::group(['prefix' => 'admin'], function () {
-	
-	Route::get('/', function () {
-		$categories = App\Category::all();
 
-		return view('admin.index', compact('categories'));
-	});
+	Route::resource('users', 'UsersController');	
 
-});
-
-Route::get('/', function () {
-	$name = "Carlos Fernandes";
-
-	return view('admin.index', compact('name'));
 });

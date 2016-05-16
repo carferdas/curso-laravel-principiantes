@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>@yield('title') | Panel de administración</title>
@@ -7,12 +7,17 @@
 </head>
 <body>
 	<div class="container">
-	@include('admin.partials.nav')
-		<div class="row">
-			<div class="col-md-8 col-md-offset-2">
-				@yield('content')
+		<div class="col-md-10 col-md-offset-1">
+			<div class="panel panel-default">
+				<div class="panel-heading">@yield('title')</div>
+				<div class="panel-body">
+					@yield('content')
+				</div>
 			</div>
 		</div>
+		<footer>
+			<p>Curso Laravel Principiantes <br> &copy carlosfernandes.me</p>
+		</footer>
 	</div>
 </body>
 </html>
