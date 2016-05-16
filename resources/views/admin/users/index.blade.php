@@ -3,6 +3,7 @@
 @section('title', 'Usuarios')
 
 @section('content')
+	<a href="{{ route('admin.users.create') }}" class="btn btn-primary">Crear nuevo usuario</a> <br><br>
 	<table class="table table-bordered">
 		<thead>
 			<th>ID</th>
@@ -27,4 +28,7 @@
 			@endforeach
 		</tbody>
 	</table>
+	<div class="text-center">
+		{!! $users->render() !!}
+	</div>
 @stop
