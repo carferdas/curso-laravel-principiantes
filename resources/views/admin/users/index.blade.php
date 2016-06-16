@@ -20,9 +20,11 @@
 					<td>{{ $user->last_name }}</td>
 					<td>{{ $user->email }}</td>
 					<td>
-						<a href="#" class="btn btn-default">x</a>
-						<a href="#" class="btn btn-default">x</a>
-						<a href="#" class="btn btn-default">x</a>
+						<a href="{{ route('admin.users.show', $user->id) }}" class="btn btn-default">Ver</a>
+						<a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-default">Editar</a>
+						{!! Form::open(['route' => ['admin.users.destroy', $user], 'method' => 'delete', 'class' => 'form-delete']) !!}
+							{!! Form::submit('Eliminar', ['class' => 'btn btn-default']) !!}
+						{!! Form::close() !!}
 					</td>
 				</tr>
 			@endforeach

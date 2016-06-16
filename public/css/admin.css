@@ -4,3 +4,7 @@ footer {
 	padding: 5px;
 	text-align: center;
 }
+
+.form-delete {
+	display: inline-block;
+}
