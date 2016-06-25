@@ -3,6 +3,18 @@
 @section('title', 'Crear usuario')
 
 @section('content')
+	
+	@if (count($errors) > 0)
+		<div class="alert alert-danger">
+			<ul>
+				@foreach ($errors->all() as $error)
+					<li>{{ $error }}</li>
+				@endforeach
+			</ul>
+		</div>
+	@endif
+
+
 	{!! Form::open(['route' => 'admin.users.store', 'method' => 'POST', 'files' => true]) !!}
 		
 		<div class="form-group">
@@ -23,6 +35,11 @@
 		<div class="form-group">
 			{!! Form::label('password', 'Contraseña') !!}
 			{!! Form::password('password', ['class' => 'form-control', 'required']) !!}
+		</div>
+
+		<div class="form-group">
+			{!! Form::label('password_confirmation', 'Repetir Contraseña') !!}
+			{!! Form::password('password_confirmation', ['class' => 'form-control', 'required']) !!}
 		</div>
 
 		<div class="form-group">
