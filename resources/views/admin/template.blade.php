@@ -13,6 +13,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">@yield('title')</div>
 					<div class="panel-body">
+						@include('admin.includes.errors')
 						@yield('content')
 					</div>
 				</div>

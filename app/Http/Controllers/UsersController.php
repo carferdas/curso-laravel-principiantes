@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests;
 use App\User;
+use Storage;
+use File;
 
 class UsersController extends Controller
 {
@@ -39,7 +41,14 @@ class UsersController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        User::create($request->all());
+        $imagen = $request->file('avatar');
+        $avatar = time() . "." .$imagen->getClientOriginalExtension();
+
+        Storage::disk('avatars')->put($avatar, File::get($imagen));
+        
+        $user = new User($request->all());
+        $user->avatar = $avatar;
+        $user->save();
 
         return redirect()->route('admin.users.index');
     }
