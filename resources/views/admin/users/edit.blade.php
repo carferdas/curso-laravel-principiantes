@@ -21,8 +21,15 @@
 		</div>
 
 		<div class="form-group">
-			{!! Form::label('avatar', 'Avatar') !!}
-			{!! Form::file('avatar') !!}
+			<div class="row">
+				<div class="col-md-1">
+					<img src="/avatars/{{ $user->avatar }}" class="img-responsive">
+				</div>
+				<div class="col-md-11">
+					{!! Form::label('avatar', 'Avatar') !!}
+					{!! Form::file('avatar') !!}
+				</div>
+			</div>
 		</div>
 
 		<div class="form-group">

@@ -16,3 +16,10 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::resource('users', 'UsersController');	
 
 });
+
+Route::get('avatars/{avatar}', function ($avatar = null) {
+	$url = storage_path() . "/app/public/avatars/{$avatar}";
+	if (file_exists($url)) {
+		return Response::download($url);
+	}
+});

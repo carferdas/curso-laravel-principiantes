@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\User;
-use Storage;
 use File;
+use Illuminate\Http\Request;
+use Storage;
 
 class UsersController extends Controller
 {
@@ -86,9 +87,22 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request, $id)
     {
-        $user = User::findOrFail($id)->update($request->all());
+        $user = User::findOrFail($id)->fill($request->all());
+
+        if ($request->hasFile('avatar'))
+        {
+            $imagen = $request->file('avatar');
+            $avatar = time() . "." .$imagen->getClientOriginalExtension();
+
+            Storage::disk('avatars')->put($avatar, File::get($imagen));
+            Storage::disk('avatars')->delete($user->avatar);
+
+            $user->avatar = $avatar;
+        }
+
+        $user->update();
 
         return redirect()->route('admin.users.index');
 
@@ -102,7 +116,9 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        User::findOrFail($id)->delete();
+        $user = User::findOrFail($id);
+        Storage::disk('avatars')->delete($user->avatar);
+        $user->delete();
 
         return redirect()->route('admin.users.index');
     }
